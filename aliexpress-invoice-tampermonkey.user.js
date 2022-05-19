@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Aliexpress Invoice Generator
 // @namespace    https://github.com/
-// @version      0.1
+// @version      0.2
 // @description  Generates invoices from Aliexpress Order Detail pages
 // @author       George Yohng
 // @match        https://www.aliexpress.com/p/order/detail.html*
@@ -38,7 +38,18 @@
     function priceByQuantity(price, qty) {
         return (parseFloat(price.replace(/[^0-9.-]+/g,"")) * parseInt(qty) + 0.0001).toFixed(2)
     }
-    
+
+    function beautifyAddress(addr) {
+        // a hack to get normalise tautology in some addresses that I'm personally using
+        // TODO: make the patterns more generic
+        return (addr
+            .replace(/Singapore, Singapore, Singapore/, 'Singapore')
+            .replace(/Singapore, Singapore/, 'Singapore')
+            .replace(/St\.Julian's, St\.Julian's/, "St.Julian's")
+            .replace(/---, /, '')
+        )
+    }
+
     async function generateInvoice() {
         let moreBtn = document.querySelector("#root div.order-price span.switch-icon")
         if (moreBtn.classList.contains('comet-icon-arrowdown')) {
