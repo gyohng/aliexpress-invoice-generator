@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Aliexpress Invoice Generator
-// @namespace    http://www.yohng.com/
+// @namespace    https://github.com/
 // @version      0.1
 // @description  Generates invoices from Aliexpress Order Detail pages
 // @author       George Yohng
