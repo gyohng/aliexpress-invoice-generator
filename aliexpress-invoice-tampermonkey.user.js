@@ -113,7 +113,7 @@
     
         let myAddress = ''
         for (let item of document.querySelectorAll('div.order-detail-info-content.expand-info > div')) {
-            myAddress += htmlEscape(item.innerText) + '<br/>\n'
+            myAddress += htmlEscape(beautifyAddress(item.innerText)) + '<br/>\n'
         }
     
         let oinfo = ''
